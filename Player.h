@@ -11,20 +11,20 @@
 class Player
 {
     private:
-        const char* name;  //The name of the player
+        char* name;  //The name of the player
         int level;  //The current player's level
         int force;  // The force of the player
         int maxHP;  //The max health points
         int HP;     //The current max health
-        int coins;  //The amount of the player's coins
+        unsigned int coins;  //The amount of the player's coins
 
         static char* allocateAndCopy(const char* str, int size);
 
     public:
-        Player ( const char* name , int maxHP = 100 , int force= 5);    //constructor
+        Player ( char* name , int maxHP = 100 , int force= 5);    //constructor
         Player (const Player& p1); //copy
         ~Player();  //deconstructor
-        Player&  operator = ( const Player& p1);  //hasama
+        Player&  operator = ( const Player& p1);  //assigning
         
         
         void printInfo();

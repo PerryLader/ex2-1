@@ -20,14 +20,14 @@ char* Player::allocateAndCopy(const char* str, int size) {
     return strcpy(new char[size+1], str);
 }
 
-Player::Player ( const char* name , int maxHP , int force) 
+Player::Player ( char* name , int maxHP , int force) 
 {
     
     this -> name = allocateAndCopy(name, strlen(name));         //error: is name const?
     this -> level = LEVEL1 ;
     this -> force = force ;
     this -> maxHP = maxHP ;
-    this -> HP = this->maxHP ;  //     was: this -> HP = this.maxHP;
+    this -> HP = this->maxHP ;  
     this -> coins = ZERO_COINS ;
 }
 
@@ -73,7 +73,10 @@ void Player::printInfo ()
 
 void Player::levelUp ()
 {
-    this -> level++ ;
+    if (this->level < 10)
+    {
+        this -> level++ ;
+    }
 }
 
 int Player::getLevel ()
@@ -89,7 +92,6 @@ void Player::buff (int addForce)
 void Player::heal (int addHP)
 {
     this -> HP += addHP ;
-    assert ( HP >= maxHP );       //noa add, is this more precise than the following lines?
     if (this -> HP > this -> maxHP)
     {
         this -> HP = this -> maxHP;
@@ -99,6 +101,10 @@ void Player::heal (int addHP)
 void Player::damage (int removeHP)
 {
     this -> HP -= removeHP ;
+    if (this -> HP < ZERO )
+    {
+        this -> HP = ZERO;
+    }
 }
 
 bool Player::isKnockedOut ()
@@ -120,7 +126,7 @@ void Player::addCoins ( unsigned int plusCoins)
 bool Player::pay ( unsigned int coinsToPay)
 {
     assert ( coinsToPay ) ;
-    if ( coinsToPay > this -> coins )      // was: if(coinsToPay < this -> coins)
+    if ( coinsToPay > this -> coins )      
     {
         return false ;
     }
