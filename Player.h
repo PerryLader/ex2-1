@@ -1,29 +1,7 @@
-//
-// Created by 
-//
-
 #ifndef EX2_PLAYER_H
 #define EX2_PLAYER_H
 
-
-/*
- * Features of a player.
- */
-
-
-/**
- * The following functions are available:           change!
- *   1.1 player	        - Creates a new empty RLE list.
- *   1.2 		    - Deletes an existing RLE list and frees all its resources.
- *   RLEListAppend           - Appends a character to the end of the list.
- *   RLEListSize		        - Returns the total number of characters a given RLE list holds.
- *   RLEListRemove	        - Removes a character at a given index in the list.
- *   RLEListGet              - Returns the character found at a given index.
- *   RLEListExportToString   - Returns a string of all the characters in the RLE list.
- *   RLEListMap              - Transforms the list by applying a given function to each character in the list.
-*/
-
-
+#include <string>
 
 
 
@@ -37,32 +15,10 @@ class Player
         int HP;     //The current max health
         int coins;  //The amount of the player's coins
 
-    /*
-     *C'tor of Player:
-     *
-     * @param name - 
-     * @param level - 
-     * @param force - 
-     * @param maxHP - 
-     * @param HP - 
-     * @param coins - 
-     * @return
-     *      New instance of Player.
-    */
     public:
-        Player(char name, int level, int force, int maxHP, int HP, int coins);
+        Player ( std::string name , int maxHP = 100 , int force= 5);
         ~Player();
 
-    
-    explicit Player(char name= '\0', int level = 1, int force= 5, int maxHP= 100, int HP = maxHP, int coins = 0) 
-    {
-        this->name = name;
-        this->level = level;
-        this->force = force;
-        this->maxHP = maxHP;
-        this->HP = HP;
-        this->coins = coins;
-    }
 
 
 
