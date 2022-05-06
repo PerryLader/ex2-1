@@ -48,7 +48,7 @@ void Player::printInfo ()
 
 void Player::levelUp ()
 {
-    this -> level ++ ;
+    this -> level++ ;
 }
 
 int Player::getLevel ()
@@ -64,7 +64,7 @@ void Player::buff (int addForce)
 void Player::heal (int addHP)
 {
     this -> HP += addHP ;
-    assert(HP>=maxHP);       //noa add, is this more precise than the following lines?
+    assert ( HP >= maxHP );       //noa add, is this more precise than the following lines?
     if (this -> HP > this -> maxHP)
     {
         this -> HP = this -> maxHP;
@@ -87,15 +87,15 @@ bool Player::isKnockedOut ()
 
 void Player::addCoins ( unsigned int plusCoins)
 {
-    assert(plusCoins>=0);
+    assert ( plusCoins >= 0 );
     this -> coins += plusCoins;
 
 }
 
 bool Player::pay ( unsigned int coinsToPay)
 {
-    assert(coinsToPay) ;
-    if(coinsToPay > this -> coins)      // was: if(coinsToPay < this -> coins)
+    assert ( coinsToPay ) ;
+    if ( coinsToPay > this -> coins )      // was: if(coinsToPay < this -> coins)
     {
         return false ;
     }
