@@ -1,10 +1,11 @@
-#include <iostream>
 #include "Player.h"
 #include "utilities.h"
 #include <string>
 #include <stdbool.h>
 #include <assert.h>
 #include <cstring>
+#include <iostream>
+
 
 const int LEVEL1 = 1 ;
 const unsigned int ZERO_COINS = 0 ;
