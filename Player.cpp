@@ -4,17 +4,25 @@
 #include <string>
 #include <stdbool.h>
 #include <assert.h>
+#include <cstring>
 
 const int LEVEL1 = 1 ;
 const unsigned int ZERO_COINS = 0 ;
 const int ZERO = 0 ;
 
-using namespace std ;
+using std::strcpy;
+using std::strlen;
 
 
-Player::Player ( std::string name , int maxHP , int force) 
+
+char* Player::allocateAndCopy(const char* str, int size) {
+    return strcpy(new char[size+1], str);
+}
+
+Player::Player ( const char* name , int maxHP , int force) 
 {
-    this -> name = name;         //error: is name const?
+    
+    this -> name = allocateAndCopy(name, strlen(name));         //error: is name const?
     this -> level = LEVEL1 ;
     this -> force = force ;
     this -> maxHP = maxHP ;
@@ -22,14 +30,30 @@ Player::Player ( std::string name , int maxHP , int force)
     this -> coins = ZERO_COINS ;
 }
 
-Player::Player (const Player & p1)
+Player::Player (const Player& p1):
+    name(p1.name),
+    level (p1.level),
+    force(p1.force),
+    maxHP(p1.maxHP),
+    HP(p1.HP),
+    coins(p1.coins){
+}
+
+Player&  Player::operator=( const Player& p1)
 {
-    name= p1.name;
-    level= p1.level;
-    force= p1.force;
-    maxHP=p1.maxHP;
-    HP= p1.HP;
+    if (this== &p1)
+    {
+        return *this;
+    }
+
+    name = p1.name;
+    level = p1.level;
+    force= p1.force; 
+    maxHP= p1.maxHP;
+    HP=p1.HP;
     coins=p1.coins;
+    
+    return *this;
 }
 
 Player::~Player()
@@ -39,7 +63,7 @@ Player::~Player()
 
 
 
-//--------------------------------
+//----------------------------------------------------
 
 void Player::printInfo ()
 {
